@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/ArcadianEngine/">
+   <Project Path="ArcadianEngine/Source/ArcadianEngine.Editor/ArcadianEngine.Editor.csproj" />
+   <Project Path="ArcadianEngine/Source/ArcadianEngine/ArcadianEngine.csproj" />
+  </Folder>
+  <Project Path="Source/VerySeriousGame.Editor/VerySeriousGame.Editor.csproj" />
+  <Project Path="Source/VerySeriousGame/VerySeriousGame.csproj" />
+</Solution>

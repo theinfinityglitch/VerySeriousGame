@@ -1,0 +1,4 @@
+[submodule "ArcadianEngine"]
+	path = ArcadianEngine
+	url = https://github.com/theinfinityglitch/arcadianengine.git
+	branch = very_serious_branch
