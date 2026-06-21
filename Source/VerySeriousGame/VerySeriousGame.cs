@@ -1,6 +1,7 @@
 using ArcadianEngine;
 using ArcadianEngine.Resources;
 using Raylib_cs;
+using VerySeriousGame.GameStates;
 
 namespace VerySeriousGame;
 
@@ -11,6 +12,8 @@ public class VerySeriousGame : ArcadianGame<VerySeriousGame>
     public override void OnInitialize()
     {
         RenderPipeline = Context.GetResource<RenderPipeline<VerySeriousGame>>();
+
+        Context.InsertGameState(new GameplayGameState());
 
         base.OnInitialize();
     }
