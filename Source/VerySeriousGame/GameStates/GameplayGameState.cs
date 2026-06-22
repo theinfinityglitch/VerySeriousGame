@@ -18,8 +18,14 @@ public class GameplayGameState : State<VerySeriousGame>
 
     private void SetupGameScene()
     {
-        Context.InsertSystem<Update, PlayerController>(new PlayerController(Context));
-        Context.Game.World.CreateEntity(new Player(), new Transform2D(new Vector2(640, 320)));
+        Context.InsertSystem<Update, PlayerController>(new PlayerController());
+        Context.InsertSystem<Draw, PlayerRender>(new PlayerRender(Context));
+
+        Context.Game.World.CreateEntity(
+            new Player(),
+            new Roulette(),
+            new Transform2D(new Vector2(640, 320))
+        );
     }
 
     public override void OnDraw()
