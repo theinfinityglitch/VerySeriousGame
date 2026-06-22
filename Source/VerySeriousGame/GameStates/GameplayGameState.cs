@@ -1,3 +1,4 @@
+using System.Numerics;
 using ArcadianEngine;
 using ArcadianEngine.Components;
 using ArcadianEngine.Core;
@@ -17,8 +18,8 @@ public class GameplayGameState : State<VerySeriousGame>
 
     private void SetupGameScene()
     {
-        Context.InsertSystem<Update, PlayerController>(new PlayerController());
-        Context.Game.World.CreateEntity(new Player(), new Transform2D());
+        Context.InsertSystem<Update, PlayerController>(new PlayerController(Context));
+        Context.Game.World.CreateEntity(new Player(), new Transform2D(new Vector2(640, 320)));
     }
 
     public override void OnDraw()
