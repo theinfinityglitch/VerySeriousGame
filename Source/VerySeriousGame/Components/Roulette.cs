@@ -15,9 +15,9 @@ public struct Roulette() : IComponent
     public float RotationSpeed = 1.25f;
 
     [Export]
+    public int SegmentsCount = 8;
+
     public float CurrentAngle = 0.0f;
 
-    [Export]
-    public int SegmentsCount = 8;
+    public int SelectedSegment;
 }
-

@@ -16,8 +16,20 @@ public class PlayerController() : QuerySystem<Player, Roulette, Transform2D>
                 HandlePlayerController(ref player, ref transform);
 
                 roulette.CurrentAngle += roulette.RotationSpeed;
+
                 if (roulette.CurrentAngle >= 360.0f)
                     roulette.CurrentAngle -= 360.0f;
+
+                float segmentAngle = 360.0f / roulette.SegmentsCount;
+
+                float localAngle = 180.0f - roulette.CurrentAngle;
+
+                localAngle %= 360.0f;
+
+                if (localAngle < 0)
+                    localAngle += 360.0f;
+
+                roulette.SelectedSegment = (int)(localAngle / segmentAngle);
             }
         );
     }

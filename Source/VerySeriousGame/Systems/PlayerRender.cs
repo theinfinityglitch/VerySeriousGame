@@ -58,7 +58,9 @@ public class PlayerRender(GameContext<VerySeriousGame> context)
 
             // Alternate colors: 0 is Green (0), odd numbers are Red, even are Black
             Color segmentColor;
-            if (i % 2 == 1)
+            if (i == roulette.SelectedSegment)
+                segmentColor = Color.Green;
+            else if (i % 2 == 1)
                 segmentColor = Color.LightGray;
             else
                 segmentColor = Color.White;
