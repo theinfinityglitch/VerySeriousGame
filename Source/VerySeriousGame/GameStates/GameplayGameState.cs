@@ -20,7 +20,7 @@ public class GameplayGameState : State<VerySeriousGame>
     private void SetupGameScene()
     {
         Context.InsertResource(new RunManager()).GenerateStartData();
-        Context.InsertSystem<Update, PlayerController>(new PlayerController());
+        Context.InsertSystem<Update, PlayerController>(new PlayerController(Context));
         Context.InsertSystem<Draw, PlayerRender>(new PlayerRender(Context));
 
         Context.Game.World.CreateEntity(

@@ -1,13 +1,27 @@
 using System.Numerics;
+using ArcadianEngine;
 using ArcadianEngine.Components;
+using Friflo.Engine.ECS;
 using Friflo.Engine.ECS.Systems;
 using Raylib_cs;
 using VerySeriousGame.Components;
+using VerySeriousGame.Resources;
 
 namespace VerySeriousGame.Systems;
 
-public class PlayerController() : QuerySystem<Player, Roulette, Transform2D>
+public class PlayerController(GameContext<VerySeriousGame> context)
+    : QuerySystem<Player, Roulette, Transform2D>
 {
+    private readonly GameContext<VerySeriousGame> Context = context;
+    private RunManager _runManager = null!;
+
+    protected override void OnAddStore(EntityStore store)
+    {
+        _runManager = Context.GetResource<RunManager>();
+
+        base.OnAddStore(store);
+    }
+
     protected override void OnUpdate()
     {
         Query.ForEachEntity(
@@ -52,5 +66,11 @@ public class PlayerController() : QuerySystem<Player, Roulette, Transform2D>
             localAngle += 360.0f;
 
         roulette.SelectedSegment = (int)(localAngle / segmentAngle);
+
+        if (
+            Raylib.IsKeyPressed(KeyboardKey.Space)
+            && _runManager.EquippedSpells.TryGetValue(roulette.SelectedSegment, out var spell)
+        )
+            Console.WriteLine(spell.ToString());
     }
 }
