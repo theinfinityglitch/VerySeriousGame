@@ -14,22 +14,7 @@ public class PlayerController() : QuerySystem<Player, Roulette, Transform2D>
             (ref player, ref roulette, ref transform, entity) =>
             {
                 HandlePlayerController(ref player, ref transform);
-
-                roulette.CurrentAngle += roulette.RotationSpeed;
-
-                if (roulette.CurrentAngle >= 360.0f)
-                    roulette.CurrentAngle -= 360.0f;
-
-                float segmentAngle = 360.0f / roulette.SegmentsCount;
-
-                float localAngle = 180.0f - roulette.CurrentAngle;
-
-                localAngle %= 360.0f;
-
-                if (localAngle < 0)
-                    localAngle += 360.0f;
-
-                roulette.SelectedSegment = (int)(localAngle / segmentAngle);
+                HandleRoulette(ref roulette);
             }
         );
     }
@@ -48,5 +33,24 @@ public class PlayerController() : QuerySystem<Player, Roulette, Transform2D>
             direction.Y += 1;
 
         transform.Position += direction * player.PlayerSpeed * Raylib.GetFrameTime();
+    }
+
+    private void HandleRoulette(ref Roulette roulette)
+    {
+        // Rotate the roulette
+        roulette.CurrentAngle += roulette.RotationSpeed;
+
+        if (roulette.CurrentAngle >= 360.0f)
+            roulette.CurrentAngle -= 360.0f;
+
+        // Get the current hovered segment
+        float segmentAngle = 360.0f / roulette.SegmentsCount;
+        float localAngle = 180.0f - roulette.CurrentAngle;
+        localAngle %= 360.0f;
+
+        if (localAngle < 0)
+            localAngle += 360.0f;
+
+        roulette.SelectedSegment = (int)(localAngle / segmentAngle);
     }
 }

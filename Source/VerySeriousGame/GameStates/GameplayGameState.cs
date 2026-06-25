@@ -4,6 +4,7 @@ using ArcadianEngine.Components;
 using ArcadianEngine.Core;
 using Friflo.Engine.ECS;
 using VerySeriousGame.Components;
+using VerySeriousGame.Resources;
 using VerySeriousGame.Systems;
 
 namespace VerySeriousGame.GameStates;
@@ -18,6 +19,7 @@ public class GameplayGameState : State<VerySeriousGame>
 
     private void SetupGameScene()
     {
+        Context.InsertResource(new RunManager()).GenerateStartData();
         Context.InsertSystem<Update, PlayerController>(new PlayerController());
         Context.InsertSystem<Draw, PlayerRender>(new PlayerRender(Context));
 
